@@ -72,7 +72,7 @@ const PostComponent: React.FC<PostComponentProps> = ({ channelId, postId }) => {
     }
 
     const handleSendMessage = async ()  => {
-        if(postInputState && (postInputState.inputTextHTML || postInputState.filesUploaded) && userProfile.userData  ) {
+        if(postInputState && (postInputState.inputTextHTML.length > 0 || postInputState.filesUploaded.length > 0 ) && userProfile.userData  ) {
             const inputAttachments: AttachmentMediaReq[] = []
 
             postInputState.filesUploaded.forEach((file) => {

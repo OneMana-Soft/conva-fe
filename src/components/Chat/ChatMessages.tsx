@@ -363,9 +363,9 @@ const ChatMessages: React.FC<ChatMessagesProps> = ({chatId,  userUUID, dmId}) =>
 
             </div>
 
-            <div className={`sticky bottom-10 float-right mr-10  z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
+            <div className={`sticky bottom-10 float-right mr-10 z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
                 <ArrowDownCircleIcon
-                    className='h-14 hover:cursor-pointer hover:shadow-lg rounded-full hover:border-gray-700 border'
+                    className='h-14 hover:cursor-pointer hover:shadow-lg bg-gray-100 rounded-full hover:border-gray-700 border'
                     fill="" onClick={scrollToBottom}/>
             </div>
 

@@ -39,13 +39,13 @@ const Attachment: React.FC<AttachmentProps> = ({ attachmentsObject }) => {
   }
 
   return (
-    <>
-      <div className='mt-2 ml-4 text-sm font-semibold h-4'>
+    <div className='ml-16'>
+      <div className='ml-4 mt-2 text-sm font-semibold h-4'>
         {attachmentsObject.length} files uploaded{' '}
         <ChevronDownIcon className='h-6 w-6 inline-block' />
       </div>
       {RenderAttachment}
-    </>
+    </div>
   );
 };
 

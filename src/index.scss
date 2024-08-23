@@ -186,7 +186,6 @@
 .message-input{
 
   .ProseMirror {
-    border:none;
     min-height: 2rem;
     max-height: 6rem;
     min-width: 75vw;
@@ -196,7 +195,8 @@
     margin-top: 0.5rem;
     overflow-wrap:break-word ;
     scrollbar-width: thin;
-    background-color: rgb(249 250 251);
+    border: 2px solid #DFDFDE;
+    background-color: #F7F7F8;
     overflow-y: auto;
     word-break: break-all;
   }
@@ -227,6 +227,12 @@
     border:none;
     padding: 0.5rem;
     border-radius: 1rem;
+    margin-left: 4.3rem;
+    margin-top: -2.5rem;
+  }
+
+  .editable .ProseMirror{
+    margin-top: 0rem;
   }
   .ProseMirror-focused:focus {
     outline: auto 1px -webkit-focus-ring-color
@@ -292,6 +298,15 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+
+.tiptap p.is-editor-empty:first-child::before {
+  color: #adb5bd;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
 }
 
 @layer base {

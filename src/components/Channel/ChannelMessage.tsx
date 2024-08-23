@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useCallback, useEffect, useRef, useState} from "react";
 import postService from "../../services/PostService.ts";
 import MessageOutput from "../MessageOutput/MessageOutput.tsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -109,7 +109,8 @@ const ChannelMessages: React.FC<ChannelMessagesProps> = ({channelId, isModerator
             setNewChannelPostsTime(0)
 
             if(newPostsResp.data.data.posts && newPostsResp.data.data.posts.length != 0 && channelPosts[channelId][channelPosts[channelId].length -1].post_id != newPostsResp.data.data.posts[0].post_id) {
-                dispatch(updateChannelPosts({channelId: channelId, posts: channelPosts[channelId].concat(newPostsResp.data.data.posts)}))
+                const posts = channelPosts[channelId].concat(newPostsResp.data.data.posts)
+                dispatch(updateChannelPosts({channelId: channelId, posts: posts}))
             }
 
         }
@@ -189,7 +190,8 @@ const ChannelMessages: React.FC<ChannelMessagesProps> = ({channelId, isModerator
         (scrolledToLast || channelPosts[channelId] == undefined)
     )
 
-    const handleScroll = throttle(() => {
+    const handleScroll = useCallback(
+        throttle(() => {
         if (scrollDivRef.current) {
             const { scrollTop, clientHeight, scrollHeight } = scrollDivRef.current;
             const scrolledToLastRaw = scrollTop + clientHeight >= scrollHeight - 400;
@@ -200,7 +202,7 @@ const ChannelMessages: React.FC<ChannelMessagesProps> = ({channelId, isModerator
             dispatch(updateChannelScrollPosition({ channelId: channelId, scrollTop: scrollTop }));
 
         }
-    }, 100)
+    }, 50),[channelId])
 
 
     useEffect(() => {
@@ -367,9 +369,9 @@ const ChannelMessages: React.FC<ChannelMessagesProps> = ({channelId, isModerator
 
             </div>
 
-            <div className={`sticky bottom-10 float-right mr-10  z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
+            <div className={`sticky bottom-10 float-right mr-10 z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
                 <ArrowDownCircleIcon
-                    className='h-14 hover:cursor-pointer hover:shadow-lg rounded-full hover:border-gray-700 border'
+                    className='h-14 hover:cursor-pointer hover:shadow-lg bg-gray-100 rounded-full hover:border-gray-700 border'
                     fill="" onClick={clearMessages}/>
             </div>
 

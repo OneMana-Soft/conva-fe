@@ -16,7 +16,6 @@ import mediaService, {AttachmentMediaReq} from "../../services/MediaService.ts";
 import dmService, {createChatRes} from "../../services/DmService.ts";
 import {clearDmInputState, createChat, ExtendedChats} from "../../store/slice/dmSlice.ts";
 import DmService from "../../services/DmService.ts";
-import ProfileIcon from "../../assets/user_profile.svg";
 import DmMessages from "./DmMessages.tsx";
 import {isZeroEpoch, throttle} from "../../utils/Helper.ts";
 import {ExtendedTypingState} from "../../store/slice/typingSlice.ts";
@@ -24,7 +23,7 @@ import TypingList from "../Typing/TypingList.tsx";
 import ConfigService from "../../services/ConfigService.ts";
 import {AtSymbolIcon, BellIcon, BellSlashIcon} from "@heroicons/react/24/outline";
 import {updateSideBarState} from "../../store/slice/sidebarSlice.ts";
-import {ArrowLeftIcon} from "@heroicons/react/20/solid";
+import {ArrowLeftIcon, UserIcon} from "@heroicons/react/20/solid";
 
 
 interface GlobalSearchProps {
@@ -166,16 +165,23 @@ const DmComponent: React.FC<GlobalSearchProps> = ({ dmId }) => {
             <div className="shadow flex flex-row items-center p-1 border-b border-gray-400">
                 <div className='md:hidden ml-4' onClick={handleBackClick}><ArrowLeftIcon fill="#383838" className="h-6 w-6"/></div>
                 <div className="w-12 h-12  relative  ml-4">
-                    <img
-                        className="w-12 h-12 hover:opacity-75 hover:cursor-pointer rounded-full border border-sky-950"
-                        src={(profileData.isError || profileData.isLoading || profileData.mediaData == undefined) ? ProfileIcon : profileData.mediaData.url}
+                    {profileData.mediaData?.url
+                        ?<img
+                        className="w-12 h-12 hover:opacity-75 hover:cursor-pointer rounded-lg"
+                        src={profileData.mediaData.url}
                         alt="Profile"
                         onClick={() => {
                             dispatch(openOtherUserProfilePopup({userId: dmId}));
                         }}
-                    />
+                    /> 
+                    :
+                        <div className="w-12 h-12 hover:opacity-75 hover:cursor-pointer rounded-lg">
+                            <UserIcon
+                                fill="#616060"
+                            />
+                        </div>}
                     <span
-                        className={`absolute h-4 w-4 rounded-full right-0 bottom-1 border border-sky-950 ${otherUserProfile.user?.data.user_status == USER_STATUS_ONLINE && otherUserProfile.user?.data.user_device_connected && otherUserProfile.user?.data.user_device_connected > 0 ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                        className={`absolute h-4 w-4 rounded-full right-0 bottom-0 border border-sky-950 ${otherUserProfile.user?.data.user_status == USER_STATUS_ONLINE && otherUserProfile.user?.data.user_device_connected && otherUserProfile.user?.data.user_device_connected > 0 ? 'bg-green-500' : 'bg-red-500'}`}></span>
 
                 </div>
 

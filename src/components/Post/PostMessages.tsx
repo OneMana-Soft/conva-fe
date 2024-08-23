@@ -268,7 +268,7 @@ const PostMessages: React.FC<PostMessagesProps> = ({postId, isModerator, userUUI
 
         // const resData: AddReactionRes = res.data
 
-        if(res.status == 200 && channelPosts[channelId] &&  userProfile.userData ) {
+        if(res.status == 200 &&  userProfile.userData ) {
             // if(reactionId) {
             //     dispatch(updatePostReactionPostId({channelId,  postId, reactionId, emojiId}))
             // } else {
@@ -356,9 +356,9 @@ const PostMessages: React.FC<PostMessagesProps> = ({postId, isModerator, userUUI
 
             </div>
 
-            <div className={`sticky bottom-10 float-right mr-10  z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
+            <div className={`sticky bottom-10 float-right mr-10 z-10 ${disableScrollToBottom ? "hidden" : ""}`}>
                 <ArrowDownCircleIcon
-                    className='h-14 hover:cursor-pointer hover:shadow-lg rounded-full hover:border-gray-700 border'
+                    className='h-14 hover:cursor-pointer hover:shadow-lg bg-gray-100 rounded-full hover:border-gray-700 border'
                     fill="" onClick={scrollToBottom}/>
             </div>
 

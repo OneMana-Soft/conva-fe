@@ -249,6 +249,10 @@ export const channelSlice = createSlice({
         updatePostReactionPostId: (state, action: {payload: UpdatePostReactionByPostId}) => {
             const { channelId, postId, emojiId, reactionId } = action.payload;
 
+            if (!state.channelPosts[channelId]) {
+                return
+            }
+
             state.channelPosts[channelId] = state.channelPosts[channelId].map((post) => {
                 if(post.post_id == postId) {
 

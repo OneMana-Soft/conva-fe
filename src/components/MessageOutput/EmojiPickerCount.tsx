@@ -27,7 +27,7 @@ const EmojiPickerCount: React.FC<EmojiReactionPickerProps> = ({ emojiId, reactio
     <div className='flex items-center m-0.5'>
 
         <Tooltip infoText={reactionUserNamesString}>
-      <button className={`p-1 rounded-full hover:border-2 hover:border-gray-400 pr-2 ml-2 mr-2 ${isSelected ? "bg-gray-400" : "bg-gray-300"}`}
+      <button className={`p-1 rounded-full hover:border-2 hover:border-gray-400 pr-2 ml-2 mr-2 ${isSelected ? "bg-gray-300" : "bg-gray-200"}`}
       onClick={onClickEmojiHandle}
       >
           <div className='flex'>

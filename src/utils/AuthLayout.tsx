@@ -108,7 +108,7 @@ const AuthLayout = ({ children }: Props) => {
             {/*    <Sidebar/>*/}
             {/*</div>*/}
 
-            <div  className={`fixed top-0 right-0 h-full w-1/3 md:max-w-fit md:relative md:block transform transition-transform duration-300 ${
+            <div  className={`fixed top-0 z-20 right-0 h-full w-1/3 md:max-w-fit md:relative md:block transform transition-transform duration-300 ${
                 sideBarActiveState ? "translate-x-0" : "translate-x-full"
             } md:translate-x-0`} ref={refSideBar}>
                 <Sidebar/>

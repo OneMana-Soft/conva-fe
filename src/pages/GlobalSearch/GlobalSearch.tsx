@@ -20,14 +20,14 @@ enum TABS {
 const GlobalSearch = () => {
     const navigate=useNavigate();
 
+    const userProfile = profileService.getSelfUserProfile()
+
     const searchQuery = useSelector((state:RootState)=>state.globalSearch.searchText)
 
     if(searchQuery == '') {
         return(<GlobalSearchWelcome/>)
     }
-
-    const userProfile = profileService.getSelfUserProfile()
-
+    
     if(userProfile.isLoading || userProfile.isError) {
         return (<></>)
     }

@@ -30,7 +30,7 @@ export default defineConfig({
         manifest: {
           name: 'Conva by OneMana',
           short_name: 'Conva',
-          description: 'My Awesome App description',
+          description: 'Conva group chat',
           theme_color: '#ffffff',
           icons: [
             {

@@ -1,8 +1,8 @@
 import React from "react";
 import mediaService from "../../../services/MediaService.ts";
-import ProfileIcon from "../../../assets/user_profile.svg";
 import { formatDateForLatestPost, removeHtmlTags } from "../../../utils/Helper.ts";
 import {useTranslation} from "react-i18next";
+import {UserIcon} from "@heroicons/react/20/solid";
 
 interface DmItemProps {
     lastUsername: string;
@@ -56,17 +56,20 @@ const DmItem: React.FC<DmItemProps> = ({
   return (
       <div className={`flex pl-2 pr-4 p-2 border-b-slate-300 pt-6 pb-4 hover:cursor-pointer hover:border-blue-500 hover:shadow-xl rounded-lg w-full ${userSelected ? "bg-gray-300": ""}`}>
           <div className="relative">
-              <img
-                  className="rounded-full h-14 w-14 border border-sky-950"
-                  src={
-                      rawDmProfileData.mediaData != undefined &&
-                      rawDmProfileData.mediaData.url != ""
-                          ? rawDmProfileData.mediaData.url
-                          : ProfileIcon
-                  }
+              {rawDmProfileData.mediaData?.url
+                  ? <img
+                  className="rounded-lg h-14 w-14"
+                  src={rawDmProfileData.mediaData.url}
                   alt=""
               />
-              <span className={`absolute h-4 w-4 rounded-full right-0 bottom-1 border border-sky-950 ${isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                :
+                  <div className="rounded-lg h-14 w-14">
+                  <UserIcon
+                      fill="#616060"
+                  />
+                  </div>
+              }
+              <span className={`absolute h-4 w-4 rounded-full right-0 bottom-0 border border-sky-950 ${isOnline ? 'bg-green-500' : 'bg-red-500'}`}></span>
 
           </div>
           <div className="ml-2 flex-1 flex flex-col justify-between">

@@ -101,12 +101,12 @@ const Sidebar = () => {
           >
 
             <img
-                className="object-cover absolute md:h-14 md:w-14 w-16 hover:opacity-70 h-16 rounded-full border border-sky-950"
+                className="object-cover absolute md:h-14 md:w-14 w-16 hover:opacity-70 h-16 rounded-lg border border-sky-950"
                 src={(profileData.isError || profileData.isLoading || profileData.mediaData == undefined) ? ProfileIcon : profileData.mediaData.url}
                 alt="Profile"
             />
             <span
-                className={`absolute h-4 w-4 rounded-full border border-sky-950 right-0 bottom-1 ${userData.userData?.data.dgraph.user_status == USER_STATUS_ONLINE ? 'bg-green-500' : 'bg-red-500'}`}></span>
+                className={`absolute h-4 w-4 rounded-full border border-sky-950 right-0 bottom-0 ${userData.userData?.data.dgraph.user_status == USER_STATUS_ONLINE ? 'bg-green-500' : 'bg-red-500'}`}></span>
 
             <div
                 className="h-16 w-16 md:h-14 md:w-14 absolute flex justify-center items-center bg-black bg-opacity-50 rounded-full opacity-0 hover:opacity-100">

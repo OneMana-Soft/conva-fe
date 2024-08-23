@@ -5,6 +5,7 @@ import {removeHtmlTags} from "../../../utils/Helper.ts";
 import mediaService from "../../../services/MediaService.ts";
 import ProfileIcon from "../../../assets/user_profile.svg";
 import {Emoji, EmojiStyle} from "emoji-picker-react";
+import {UserIcon} from "@heroicons/react/20/solid";
 
 interface Mention {
   username: string;
@@ -38,11 +39,19 @@ const ActivityItem: React.FC<Props> = ({ mention, index,  emojiId }) => {
           {emojiId ?
               <div className="mr-4"><Emoji unified={emojiId||''} size={40} lazyLoad={true} emojiStyle={EmojiStyle.GOOGLE}/></div>
           :
-          <img
+              (profileImage.mediaData?.url
+                  ? <img
             src={profileImage.mediaData?.url || ProfileIcon}
             alt={mention.username}
-            className="h-16 w-16 rounded-full mr-2 object-cover"
-          />}
+            className="h-12 w-12 rounded-lg mr-2 object-cover"
+          />
+              : <div className="h-12 w-12 rounded-lg mr-2 object-cover">
+
+                      <UserIcon
+                      fill="#616060"
+                  />
+                      </div>
+              )}
           <div className="flex-1">
             <div className="flex justify-between">
               <div className="text-m font-medium text-gray-900">

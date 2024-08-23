@@ -29,6 +29,7 @@ import {CodeBlockLowlight} from "@tiptap/extension-code-block-lowlight";
 import {common, createLowlight} from "lowlight";
 import { Extension } from "@tiptap/core";
 import {getFileSVG, isInStandaloneMode} from "../../utils/Helper.ts";
+import {Placeholder} from "@tiptap/extension-placeholder";
 
 
 interface MessageInputProp {
@@ -88,6 +89,18 @@ const MessageInput: React.FC<MessageInputProp> = ({Type, UniqueId, HandleSendMes
       HTMLAttributes: {
         class: 'ext-link',
       },
+    }),
+    Placeholder.configure({
+      // Use a placeholder:
+      placeholder: 'Write something …',
+      // Use different placeholders depending on the node type:
+      // placeholder: ({ node }) => {
+      //   if (node.type.name === 'heading') {
+      //     return 'What’s the title?'
+      //   }
+
+      //   return 'Can you add some further context?'
+      // },
     }),
     Mention.configure({
       suggestion: mentionSuggestionOptions,
